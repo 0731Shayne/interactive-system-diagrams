@@ -21,7 +21,7 @@ test("server-renders the interactive diagram application", async () => {
 
   const html = await response.text();
   assert.match(html, /系统方案中心/);
-  assert.match(html, /系统框图与器件选型/);
+  assert.match(html, /交互式方框图/);
   assert.match(html, /家用空调/);
   assert.doesNotMatch(html, /codex-preview/);
   assert.doesNotMatch(html, /Your site is taking shape/);

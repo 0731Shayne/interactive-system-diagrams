@@ -756,4 +756,4 @@
 			<path d="M42.09 823.88 L0 823.88 L0 841.89 L42.09 841.89 L42.09 823.88" class="st3"/>
 		</g>
 	</g>
-</svg>
+<g id="diagram-cleanup" pointer-events="none"><rect x="947" y="289" width="131" height="55" fill="#FFFFFF"/><rect x="948" y="291" width="128" height="50" fill="#FF0000" stroke="#000000" stroke-width="0.75"/><text x="1012" y="305" text-anchor="middle" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="9.5">3 in 1</text><text x="1012" y="320" text-anchor="middle" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="9" font-weight="700">CAN/485 Interface</text><text x="1012" y="334" text-anchor="middle" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="9" font-weight="700">w/ Isolated Power</text></g></svg>
