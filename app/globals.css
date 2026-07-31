@@ -100,6 +100,15 @@ button { font: inherit; }
 .category-header:hover { background: #eeeeee; }
 .chevron { display: inline-block; transform: rotate(180deg); font-size: 21px; line-height: 1; }
 .chevron.is-open { transform: none; }
+.product-list { margin: 0 18px; border-bottom: 1px solid #ddd; }
+.product-card { padding: 19px 17px 17px; border-bottom: 1px solid #e7e7e7; }
+.product-card:last-child { border-bottom: 0; }
+.product-card-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+.product-company { display: block; margin-bottom: 5px; color: #666; font-size: 11px; }
+.product-card h3 { margin: 0; color: var(--ti-teal); font-size: 18px; font-weight: 600; }
+.product-match { flex: 0 0 auto; padding: 4px 7px; color: #666; background: #f0f0f0; font-size: 10px; }
+.product-card p { margin: 10px 0 13px; color: #444; font-size: 13px; line-height: 1.5; }
+.product-source { color: #888; font-size: 11px; }
 .product-placeholder { margin: 0 18px; padding: 24px 17px 21px; border-bottom: 1px solid #ddd; }
 .placeholder-row { display: flex; align-items: flex-start; gap: 13px; }
 .placeholder-icon { width: 28px; height: 28px; display: grid; place-items: center; flex: 0 0 auto; border: 1px solid #aaa; color: var(--ti-teal); font-size: 19px; }

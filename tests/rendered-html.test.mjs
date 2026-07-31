@@ -44,4 +44,7 @@ test("ships all six source diagrams", async () => {
   const page = await readFile(new URL("../app/page.tsx", import.meta.url), "utf8");
   assert.match(page, /data-testid={`hotspot-/);
   assert.match(page, /产品数据待接入/);
+  assert.match(page, /SC371P042F/);
+  assert.match(page, /SC3771/);
+  assert.match(page, /SC81460/);
 });

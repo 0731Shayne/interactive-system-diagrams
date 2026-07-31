@@ -2,6 +2,13 @@
 
 import { useMemo, useState } from "react";
 
+type Product = {
+  company: string;
+  model: string;
+  description: string;
+  isSeries?: boolean;
+};
+
 type Hotspot = {
   id: string;
   label: string;
@@ -13,6 +20,7 @@ type Hotspot = {
   height: number;
   areas?: Array<Pick<Hotspot, "x" | "y" | "width" | "height">>;
   borderPadding?: number;
+  products?: Product[];
 };
 
 type Diagram = {
@@ -24,6 +32,13 @@ type Diagram = {
   viewBox: string;
   hotspots: Hotspot[];
 };
+
+const southchipProduct = (model: string, description: string, isSeries = false): Product => ({
+  company: "南芯科技",
+  model,
+  description,
+  isSeries,
+});
 
 const diagrams: Diagram[] = [
   {
@@ -100,20 +115,20 @@ const diagrams: Diagram[] = [
     viewBox: "0 0 1280 720",
     hotspots: [
       { id: "bms", label: "BMS", category: "电池管理", description: "电池监测、保护和状态管理接口。", x: 89, y: 145, width: 152, height: 31 },
-      { id: "iso-can-power", label: "隔离 CAN 与隔离电源", category: "隔离通信", description: "在 BMS 与控制系统之间提供通信和电源隔离。", x: 89, y: 209, width: 152, height: 41 },
-      { id: "dcdc-driver", label: "DCDC 隔离驱动", category: "功率驱动", description: "驱动双向 DCDC 功率开关。", x: 678, y: 133, width: 86, height: 31 },
-      { id: "high-voltage-hall-sensor", label: "高压侧霍尔传感器", category: "电流采样", description: "采集高压储能支路的电流信息。", x: 845, y: 133, width: 86, height: 33 },
-      { id: "pv-hall-sensor", label: "光伏侧霍尔传感器", category: "电流采样", description: "采集光伏组串输入电流。", x: 54, y: 361, width: 86, height: 33 },
-      { id: "mppt-hall-sensor", label: "MPPT 霍尔传感器", category: "电流采样", description: "为 MPPT 控制回路提供电流反馈。", x: 294, y: 362, width: 86, height: 33 },
-      { id: "mppt-driver", label: "MPPT 隔离驱动", category: "功率驱动", description: "驱动 MPPT 级功率器件。", x: 408, y: 363, width: 86, height: 31 },
-      { id: "bus-hall-sensor", label: "母线霍尔传感器", category: "电流采样", description: "采集直流母线电流用于控制和保护。", x: 533, y: 362, width: 86, height: 33 },
-      { id: "inverter-driver", label: "逆变器隔离驱动", category: "功率驱动", description: "驱动逆变功率级。", x: 769, y: 362, width: 86, height: 31 },
-      { id: "inverter-iso-power", label: "逆变器隔离电源", category: "隔离电源", description: "为逆变器隔离驱动域供电。", x: 868, y: 363, width: 86, height: 31 },
-      { id: "ac-hall-sensor", label: "交流侧霍尔传感器", category: "电流采样", description: "采集交流输出侧电流。", x: 991, y: 363, width: 86, height: 33 },
+      { id: "iso-can-power", label: "隔离 CAN 与隔离电源", category: "隔离通信", description: "在 BMS 与控制系统之间提供通信和电源隔离。", x: 89, y: 209, width: 152, height: 41, products: [southchipProduct("SC371P042F", "隔离 CAN 接口与隔离电源集成方案。") ] },
+      { id: "dcdc-driver", label: "DCDC 隔离驱动", category: "功率驱动", description: "驱动双向 DCDC 功率开关。", x: 678, y: 133, width: 86, height: 31, products: [southchipProduct("SC3771", "用于 DCDC 功率级的隔离驱动方案。") ] },
+      { id: "high-voltage-hall-sensor", label: "高压侧霍尔传感器", category: "电流采样", description: "采集高压储能支路的电流信息。", x: 845, y: 133, width: 86, height: 33, products: [southchipProduct("SC81XX", "用于高压侧电流采样的霍尔传感器系列。", true)] },
+      { id: "pv-hall-sensor", label: "光伏侧霍尔传感器", category: "电流采样", description: "采集光伏组串输入电流。", x: 54, y: 361, width: 86, height: 33, products: [southchipProduct("SC81XX", "用于光伏侧电流采样的霍尔传感器系列。", true)] },
+      { id: "mppt-hall-sensor", label: "MPPT 霍尔传感器", category: "电流采样", description: "为 MPPT 控制回路提供电流反馈。", x: 294, y: 362, width: 86, height: 33, products: [southchipProduct("SC81XX", "用于 MPPT 回路电流采样的霍尔传感器系列。", true)] },
+      { id: "mppt-driver", label: "MPPT 隔离驱动", category: "功率驱动", description: "驱动 MPPT 级功率器件。", x: 408, y: 363, width: 86, height: 31, products: [southchipProduct("SC3771", "用于 MPPT 功率级的隔离驱动方案。") ] },
+      { id: "bus-hall-sensor", label: "母线霍尔传感器", category: "电流采样", description: "采集直流母线电流用于控制和保护。", x: 533, y: 362, width: 86, height: 33, products: [southchipProduct("SC81XX", "用于直流母线电流采样的霍尔传感器系列。", true)] },
+      { id: "inverter-driver", label: "逆变器隔离驱动", category: "功率驱动", description: "驱动逆变功率级。", x: 769, y: 362, width: 86, height: 31, products: [southchipProduct("SC3771", "用于逆变器功率级的隔离驱动方案。") ] },
+      { id: "inverter-iso-power", label: "逆变器隔离电源", category: "隔离电源", description: "为逆变器隔离驱动域供电。", x: 868, y: 363, width: 86, height: 31, products: [southchipProduct("SC378122", "用于逆变器驱动域供电的隔离电源方案。") ] },
+      { id: "ac-hall-sensor", label: "交流侧霍尔传感器", category: "电流采样", description: "采集交流输出侧电流。", x: 991, y: 363, width: 86, height: 33, products: [southchipProduct("SC81XX", "用于交流侧电流采样的霍尔传感器系列。", true)] },
       { id: "isolation-monitoring", label: "绝缘监测", category: "安全监测", description: "监测高压系统绝缘状态。", x: 37, y: 500, width: 142, height: 29 },
-      { id: "spi", label: "隔离 SPI 通信", category: "隔离通信", description: "连接 DSP 与 ARM 控制域的高速隔离通信。", x: 335, y: 587, width: 238, height: 34 },
-      { id: "interfaces", label: "隔离通信接口", category: "外部通信", description: "提供 RS-485、CAN 等外部隔离通信接口。", x: 752, y: 546, width: 145, height: 67, areas: [{ x: 752, y: 546, width: 145, height: 67 }, { x: 753, y: 621, width: 145, height: 32 }] },
-      { id: "auxiliary-power", label: "辅助电源", category: "电源管理", description: "通过 Buck 与反激变换器生成系统辅助电源。", x: 1011, y: 531, width: 92, height: 30, areas: [{ x: 1011, y: 531, width: 92, height: 30 }, { x: 1011, y: 586, width: 185, height: 33 }] },
+      { id: "spi", label: "隔离 SPI 通信", category: "隔离通信", description: "连接 DSP 与 ARM 控制域的高速隔离通信。", x: 335, y: 587, width: 238, height: 34, products: [southchipProduct("SC37241", "用于 DSP 与 ARM 控制域连接的隔离 SPI 通信方案。") ] },
+      { id: "interfaces", label: "隔离通信接口", category: "外部通信", description: "提供 RS-485、CAN 等外部隔离通信接口。", x: 752, y: 546, width: 145, height: 67, areas: [{ x: 752, y: 546, width: 145, height: 67 }, { x: 753, y: 621, width: 145, height: 32 }], products: [southchipProduct("SC371485", "隔离 RS-485 接口方案。"), southchipProduct("SC371042", "隔离 CAN 接口方案。"), southchipProduct("SC378052", "为外部隔离通信接口供电的隔离电源方案。") ] },
+      { id: "auxiliary-power", label: "辅助电源", category: "电源管理", description: "通过 Buck 与反激变换器生成系统辅助电源。", x: 1011, y: 531, width: 92, height: 30, areas: [{ x: 1011, y: 531, width: 92, height: 30 }, { x: 1011, y: 586, width: 185, height: 33 }], products: [southchipProduct("SC81440", "Buck 辅助电源方案。"), southchipProduct("SC81460", "Buck 辅助电源方案。"), southchipProduct("SC3001", "Flyback 反激辅助电源方案。") ] },
     ],
   },
   {
@@ -318,11 +333,27 @@ export default function Home() {
                   onClick={() => setCategoryOpen((open) => !open)}
                   aria-expanded={categoryOpen}
                 >
-                  <span>{selected.category}（0）</span>
+                  <span>{selected.category}（{selected.products?.length ?? 0}）</span>
                   <span className={categoryOpen ? "chevron is-open" : "chevron"} aria-hidden="true">⌃</span>
                 </button>
 
-                {categoryOpen && (
+                {categoryOpen && (selected.products?.length ? (
+                  <div className="product-list">
+                    {selected.products.map((product) => (
+                      <article className="product-card" key={product.model}>
+                        <div className="product-card-heading">
+                          <div>
+                            <span className="product-company">{product.company}</span>
+                            <h3>{product.model}</h3>
+                          </div>
+                          <span className="product-match">{product.isSeries ? "产品系列" : "已匹配"}</span>
+                        </div>
+                        <p>{product.description}</p>
+                        <div className="product-source">来源：储能 PCS 系统方案图</div>
+                      </article>
+                    ))}
+                  </div>
+                ) : (
                   <div className="product-placeholder">
                     <div className="placeholder-row">
                       <span className="placeholder-icon" aria-hidden="true">□</span>
@@ -337,7 +368,7 @@ export default function Home() {
                       <span>数据表 PDF / HTML</span>
                     </div>
                   </div>
-                )}
+                ))}
 
                 <button type="button" className="find-more-button">
                   <span className="filter-icon" aria-hidden="true">≡</span>
