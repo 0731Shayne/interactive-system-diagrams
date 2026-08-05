@@ -505,7 +505,7 @@ export default function Home() {
             </div>
 
             <div className="diagram-controls" aria-label="缩放控制">
-              <button type="button" onClick={() => setZoom((value) => Math.max(0.8, Number((value - 0.2).toFixed(1))))} aria-label="缩小">−</button>
+              <button type="button" onClick={() => setZoom((value) => Math.max(0.4, Number((value - 0.2).toFixed(1))))} aria-label="缩小">−</button>
               <button type="button" className="zoom-value" onClick={() => setZoom(1)} aria-label="恢复原始缩放">{Math.round(zoom * 100)}%</button>
               <button type="button" onClick={() => setZoom((value) => Math.min(2, Number((value + 0.2).toFixed(1))))} aria-label="放大">＋</button>
             </div>

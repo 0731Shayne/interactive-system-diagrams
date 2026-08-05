@@ -73,7 +73,7 @@ button { font: inherit; }
 .download-svg { flex: 0 0 auto; color: var(--ti-teal); font-size: 12px; font-weight: 700; text-decoration: none; }
 .download-svg:hover { text-decoration: underline; }
 .diagram-viewport { width: 100%; overflow: auto; background: #fff; }
-.diagram-stage { min-width: 100%; transition: width .18s ease; }
+.diagram-stage { min-width: 0; margin-inline: auto; transition: width .18s ease; }
 .system-diagram { display: block; width: 100%; height: auto; background: #fff; }
 
 .hotspot { cursor: pointer; outline: none; }
