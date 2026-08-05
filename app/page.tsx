@@ -375,14 +375,6 @@ export default function Home() {
 
   return (
     <main className="app-shell">
-      <header className="site-header">
-        <div className="site-brand">
-          <span className="brand-symbol" aria-hidden="true" />
-          <span>系统方案中心</span>
-        </div>
-        <span className="header-label">应用与设计资源</span>
-      </header>
-
       <div className="page-content">
         <section className="page-heading">
           <p className="breadcrumb">应用 / 系统方案 / 交互式方框图</p>
