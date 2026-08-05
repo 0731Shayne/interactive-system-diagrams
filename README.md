@@ -1,6 +1,6 @@
 # Interactive System Diagrams
 
-An interactive front-end for browsing system block diagrams and selecting functional modules. The current version includes 17 system pages and 24 local SVG diagrams.
+An interactive front-end for browsing system block diagrams and selecting functional modules. The current version includes 19 system pages and 27 local SVG diagrams.
 
 - Home air conditioner
 - Central air conditioner
@@ -15,8 +15,10 @@ An interactive front-end for browsing system block diagrams and selecting functi
 - Server HVDC SiC PSU — main circuit + auxiliary power
 - Server high-voltage IBC GaN — main circuit + auxiliary power
 - Server low-voltage IBC — LLC + HSC + multiphase Buck
+- OBC & DC/DC — main power/control board + auxiliary power tree
+- Traction inverter
 
-Each diagram is rendered as a scalable SVG. Existing mapped diagrams retain accessible clickable regions; newly imported multi-drawing systems use view tabs so their overview, auxiliary supply and topology drawings stay together on one page.
+Each diagram is rendered as a scalable SVG. Colored functional blocks in the imported robot, inverter, server, OBC and traction-inverter drawings are clickable. Part numbers extracted from the supplied source decks are shown in the product panel; blocks without a mapped part show a pending-data state. Multi-drawing systems use view tabs so their overview, auxiliary supply and topology drawings stay together on one page.
 
 ## Local development
 
@@ -35,6 +37,7 @@ npm test
 ## Main files
 
 - `app/page.tsx` — diagram definitions, clickable areas and interaction logic
+- `app/imported-hotspots.json` — imported colored-block coordinates and mapped product numbers
 - `app/globals.css` — responsive layout and interaction styles
 - `public/diagrams/` — all local source SVG diagrams
 

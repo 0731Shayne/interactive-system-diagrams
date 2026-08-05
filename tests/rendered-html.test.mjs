@@ -53,6 +53,9 @@ test("ships existing and newly grouped source diagrams", async () => {
     "server-lv-ibc-llc.svg",
     "server-lv-ibc-hsc.svg",
     "server-lv-ibc-multiphase-buck.svg",
+    "obc-dcdc-main.svg",
+    "obc-dcdc-aux.svg",
+    "traction-inverter.svg",
   ];
 
   await Promise.all(
@@ -70,5 +73,16 @@ test("ships existing and newly grouped source diagrams", async () => {
   assert.match(page, /系统总览/);
   assert.match(page, /辅助电源/);
   assert.match(page, /多相 Buck/);
+  assert.match(page, /OBC & DC\/DC/);
+  assert.match(page, /Traction Inverter/);
   assert.match(page, /selectView/);
+
+  const importedHotspots = JSON.parse(
+    await readFile(new URL("../app/imported-hotspots.json", import.meta.url), "utf8"),
+  );
+  assert.ok(importedHotspots["obc-dcdc-main"].length > 0);
+  assert.ok(importedHotspots["server-single-phase-main"].length > 0);
+  assert.ok(importedHotspots["power-bank-charger-bms"].some(
+    (hotspot) => hotspot.products?.some((product) => product.model === "SC8815A"),
+  ));
 });

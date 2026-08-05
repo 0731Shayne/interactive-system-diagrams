@@ -1,12 +1,14 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import importedHotspots from "./imported-hotspots.json";
 
 type Product = {
   company: string;
   model: string;
   description: string;
   isSeries?: boolean;
+  source?: string;
 };
 
 type Hotspot = {
@@ -50,6 +52,8 @@ const southchipProduct = (model: string, description: string, isSeries = false):
   description,
   isSeries,
 });
+
+const hotspotsFor = (key: keyof typeof importedHotspots): Hotspot[] => importedHotspots[key] as Hotspot[];
 
 const diagrams: Diagram[] = [
   {
@@ -168,10 +172,10 @@ const diagrams: Diagram[] = [
     subtitle: "电源轨、BMS、感知控制与关节驱动系统",
     src: "diagrams/embodied-robot-system.svg",
     viewBox: "0 0 960.009449 540",
-    hotspots: [],
+    hotspots: hotspotsFor("embodied-robot-system"),
     views: [
-      { id: "system-overview", label: "系统总览", description: "展示具身机器人的控制、感知、通信及关节驱动系统。", src: "diagrams/embodied-robot-system.svg" },
-      { id: "power-rail", label: "电源轨架构", description: "展示适配器、电池、BMS 与各级电源轨的供电关系。", src: "diagrams/embodied-robot-power-rail.svg" },
+      { id: "system-overview", label: "系统总览", description: "展示具身机器人的控制、感知、通信及关节驱动系统。", src: "diagrams/embodied-robot-system.svg", hotspots: hotspotsFor("embodied-robot-system") },
+      { id: "power-rail", label: "电源轨架构", description: "展示适配器、电池、BMS 与各级电源轨的供电关系。", src: "diagrams/embodied-robot-power-rail.svg", hotspots: hotspotsFor("embodied-robot-power-rail") },
     ],
   },
   {
@@ -181,7 +185,7 @@ const diagrams: Diagram[] = [
     subtitle: "光伏输入、功率变换、采样保护与并网接口",
     src: "diagrams/pv-inverter-solution.svg",
     viewBox: "0 0 960.009449 540",
-    hotspots: [],
+    hotspots: hotspotsFor("pv-inverter-solution"),
   },
   {
     id: "storage-inverter-solution",
@@ -190,7 +194,7 @@ const diagrams: Diagram[] = [
     subtitle: "电池侧变换、逆变功率级与系统控制",
     src: "diagrams/energy-storage-inverter-solution.svg",
     viewBox: "0 0 960.009449 540",
-    hotspots: [],
+    hotspots: hotspotsFor("energy-storage-inverter-solution"),
   },
   {
     id: "portable-energy-storage",
@@ -199,7 +203,7 @@ const diagrams: Diagram[] = [
     subtitle: "双向 DCDC、电池接口与外部供电链路",
     src: "diagrams/portable-energy-storage-dcdc.svg",
     viewBox: "0 0 960.009449 540",
-    hotspots: [],
+    hotspots: hotspotsFor("portable-energy-storage-dcdc"),
   },
   {
     id: "industrial-inverter-solution",
@@ -208,7 +212,7 @@ const diagrams: Diagram[] = [
     subtitle: "整流、母线、逆变驱动及控制接口",
     src: "diagrams/industrial-inverter-solution.svg",
     viewBox: "0 0 960.009449 540",
-    hotspots: [],
+    hotspots: hotspotsFor("industrial-inverter-solution"),
   },
   {
     id: "power-bank-bms",
@@ -217,7 +221,29 @@ const diagrams: Diagram[] = [
     subtitle: "2S–4S 电量计、充电管理与电池保护",
     src: "diagrams/power-bank-charger-bms.svg",
     viewBox: "0 0 960.009449 540",
-    hotspots: [],
+    hotspots: hotspotsFor("power-bank-charger-bms"),
+  },
+  {
+    id: "obc-dcdc",
+    name: "OBC & DC/DC",
+    shortName: "OBC & DC/DC",
+    subtitle: "车载充电机、主功率控制板与多路辅助电源树",
+    src: "diagrams/obc-dcdc-main.svg",
+    viewBox: "0 0 960.009449 540",
+    hotspots: hotspotsFor("obc-dcdc-main"),
+    views: [
+      { id: "main-power-control", label: "主功率与控制", description: "OBC 与 DC/DC 主功率级、采样、隔离及控制链路。", src: "diagrams/obc-dcdc-main.svg", hotspots: hotspotsFor("obc-dcdc-main") },
+      { id: "aux-power-tree", label: "辅助电源树", description: "OBC 与 DC/DC 控制、驱动及通信域的辅助供电。", src: "diagrams/obc-dcdc-aux.svg", hotspots: hotspotsFor("obc-dcdc-aux") },
+    ],
+  },
+  {
+    id: "traction-inverter",
+    name: "Traction Inverter",
+    shortName: "Traction Inverter",
+    subtitle: "牵引逆变主功率级、隔离驱动、采样与辅助电源",
+    src: "diagrams/traction-inverter.svg",
+    viewBox: "0 0 960.009449 540",
+    hotspots: hotspotsFor("traction-inverter"),
   },
   {
     id: "server-single-phase-psu",
@@ -227,10 +253,10 @@ const diagrams: Diagram[] = [
     family: "服务器电源",
     src: "diagrams/server-single-phase-main.svg",
     viewBox: "0 0 960.009449 540",
-    hotspots: [],
+    hotspots: hotspotsFor("server-single-phase-main"),
     views: [
-      { id: "main-circuit", label: "主电路", description: "单相服务器 PSU 主功率变换与输出链路。", src: "diagrams/server-single-phase-main.svg" },
-      { id: "aux-power", label: "辅助电源", description: "单相服务器 PSU 控制与驱动辅助供电。", src: "diagrams/server-single-phase-aux.svg" },
+      { id: "main-circuit", label: "主电路", description: "单相服务器 PSU 主功率变换与输出链路。", src: "diagrams/server-single-phase-main.svg", hotspots: hotspotsFor("server-single-phase-main") },
+      { id: "aux-power", label: "辅助电源", description: "单相服务器 PSU 控制与驱动辅助供电。", src: "diagrams/server-single-phase-aux.svg", hotspots: hotspotsFor("server-single-phase-aux") },
     ],
   },
   {
@@ -241,10 +267,10 @@ const diagrams: Diagram[] = [
     family: "服务器电源",
     src: "diagrams/server-three-phase-main.svg",
     viewBox: "0 0 960.009449 540",
-    hotspots: [],
+    hotspots: hotspotsFor("server-three-phase-main"),
     views: [
-      { id: "main-circuit", label: "主电路", description: "三相服务器 PSU 主功率变换与输出链路。", src: "diagrams/server-three-phase-main.svg" },
-      { id: "aux-power", label: "辅助电源", description: "三相服务器 PSU 控制、采样与驱动辅助供电。", src: "diagrams/server-three-phase-aux.svg" },
+      { id: "main-circuit", label: "主电路", description: "三相服务器 PSU 主功率变换与输出链路。", src: "diagrams/server-three-phase-main.svg", hotspots: hotspotsFor("server-three-phase-main") },
+      { id: "aux-power", label: "辅助电源", description: "三相服务器 PSU 控制、采样与驱动辅助供电。", src: "diagrams/server-three-phase-aux.svg", hotspots: hotspotsFor("server-three-phase-aux") },
     ],
   },
   {
@@ -255,10 +281,10 @@ const diagrams: Diagram[] = [
     family: "服务器电源",
     src: "diagrams/server-hvdc-sic-main.svg",
     viewBox: "0 0 960.009449 540",
-    hotspots: [],
+    hotspots: hotspotsFor("server-hvdc-sic-main"),
     views: [
-      { id: "main-circuit", label: "800V–50V 主电路", description: "采用 SiC 器件的 HVDC 服务器 PSU 主功率链路。", src: "diagrams/server-hvdc-sic-main.svg" },
-      { id: "aux-power", label: "辅助电源", description: "HVDC SiC PSU 的控制与隔离辅助供电。", src: "diagrams/server-hvdc-sic-aux.svg" },
+      { id: "main-circuit", label: "800V–50V 主电路", description: "采用 SiC 器件的 HVDC 服务器 PSU 主功率链路。", src: "diagrams/server-hvdc-sic-main.svg", hotspots: hotspotsFor("server-hvdc-sic-main") },
+      { id: "aux-power", label: "辅助电源", description: "HVDC SiC PSU 的控制与隔离辅助供电。", src: "diagrams/server-hvdc-sic-aux.svg", hotspots: hotspotsFor("server-hvdc-sic-aux") },
     ],
   },
   {
@@ -269,10 +295,10 @@ const diagrams: Diagram[] = [
     family: "服务器电源",
     src: "diagrams/server-hv-ibc-gan-main.svg",
     viewBox: "0 0 960.009449 540",
-    hotspots: [],
+    hotspots: hotspotsFor("server-hv-ibc-gan-main"),
     views: [
-      { id: "main-circuit", label: "IBC 主电路", description: "采用 GaN 器件的高压中间总线变换主电路。", src: "diagrams/server-hv-ibc-gan-main.svg" },
-      { id: "aux-power", label: "辅助电源", description: "高压 IBC 在 PDB 中的控制和驱动辅助供电。", src: "diagrams/server-hv-ibc-gan-aux.svg" },
+      { id: "main-circuit", label: "IBC 主电路", description: "采用 GaN 器件的高压中间总线变换主电路。", src: "diagrams/server-hv-ibc-gan-main.svg", hotspots: hotspotsFor("server-hv-ibc-gan-main") },
+      { id: "aux-power", label: "辅助电源", description: "高压 IBC 在 PDB 中的控制和驱动辅助供电。", src: "diagrams/server-hv-ibc-gan-aux.svg", hotspots: hotspotsFor("server-hv-ibc-gan-aux") },
     ],
   },
   {
@@ -283,11 +309,11 @@ const diagrams: Diagram[] = [
     family: "服务器电源",
     src: "diagrams/server-lv-ibc-llc.svg",
     viewBox: "0 0 960.009449 540",
-    hotspots: [],
+    hotspots: hotspotsFor("server-lv-ibc-llc"),
     views: [
-      { id: "llc", label: "LLC 拓扑", description: "48V 至 12V / 6V LLC 谐振变换方案。", src: "diagrams/server-lv-ibc-llc.svg" },
-      { id: "hsc", label: "HSC 拓扑", description: "48V 至 12V / 6V 混合开关电容变换方案。", src: "diagrams/server-lv-ibc-hsc.svg" },
-      { id: "multiphase-buck", label: "多相 Buck", description: "48V 至 12V / 6V 多相同步 Buck 变换方案。", src: "diagrams/server-lv-ibc-multiphase-buck.svg" },
+      { id: "llc", label: "LLC 拓扑", description: "48V 至 12V / 6V LLC 谐振变换方案。", src: "diagrams/server-lv-ibc-llc.svg", hotspots: hotspotsFor("server-lv-ibc-llc") },
+      { id: "hsc", label: "HSC 拓扑", description: "48V 至 12V / 6V 混合开关电容变换方案。", src: "diagrams/server-lv-ibc-hsc.svg", hotspots: hotspotsFor("server-lv-ibc-hsc") },
+      { id: "multiphase-buck", label: "多相 Buck", description: "48V 至 12V / 6V 多相同步 Buck 变换方案。", src: "diagrams/server-lv-ibc-multiphase-buck.svg", hotspots: hotspotsFor("server-lv-ibc-multiphase-buck") },
     ],
   },
 ];
@@ -395,7 +421,7 @@ export default function Home() {
           <div className="diagram-panel">
             <div className="diagram-instruction">
               <span className="instruction-mark" aria-hidden="true" />
-              {currentHotspots.length ? "红色模块可点击并查看产品资源；灰色模块用于说明系统结构" : "使用下方视图标签切换同一系统的总览、辅助电源或不同拓扑"}
+              {currentHotspots.length ? "彩色模块均可点击；已标注料号的模块显示产品，其余显示待接入" : "使用下方视图标签切换同一系统的总览、辅助电源或不同拓扑"}
             </div>
 
             <div className="view-toolbar">
@@ -544,7 +570,7 @@ export default function Home() {
                           <span className="product-match">{product.isSeries ? "产品系列" : "已匹配"}</span>
                         </div>
                         <p>{product.description}</p>
-                        <div className="product-source">来源：储能 PCS 系统方案图</div>
+                        <div className="product-source">来源：{product.source ?? `${diagram.name} 系统方案图`}</div>
                       </article>
                     ))}
                   </div>
