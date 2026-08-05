@@ -51,6 +51,8 @@ button { font: inherit; }
 .application-switcher { display: flex; align-items: stretch; border-bottom: 1px solid var(--line); background: #fff; }
 .switcher-label { padding: 15px 18px; display: flex; align-items: center; color: #555; font-size: 13px; font-weight: 700; border-right: 1px solid var(--line); }
 .switcher-buttons { display: flex; overflow-x: auto; }
+.switcher-group { display: flex; align-items: stretch; flex: 0 0 auto; border-right: 1px solid var(--line); }
+.switcher-group-label { min-width: 76px; padding: 0 12px; display: grid; place-items: center; background: #f6f6f6; color: #777; font-size: 11px; font-weight: 700; white-space: nowrap; }
 .application-button { position: relative; min-width: 128px; padding: 16px 18px; border: 0; background: #fff; color: #555; cursor: pointer; white-space: nowrap; }
 .application-button:hover { background: #f6f6f6; color: #222; }
 .application-button:focus-visible { outline: 2px solid rgba(204, 0, 0, .48); outline-offset: -3px; }
@@ -61,6 +63,15 @@ button { font: inherit; }
 .diagram-panel { position: relative; min-width: 0; padding: 0 22px 60px; border-right: 1px solid var(--line); background: #fff; }
 .diagram-instruction { min-height: 56px; padding: 17px 2px; display: flex; align-items: center; gap: 9px; color: #666; font-size: 12px; }
 .instruction-mark { width: 14px; height: 14px; border: 2px solid var(--ti-red); background: rgba(204, 0, 0, .05); }
+.view-toolbar { min-height: 48px; margin-bottom: 14px; display: flex; align-items: center; justify-content: space-between; gap: 18px; border-bottom: 1px solid var(--soft-line); }
+.view-tabs { display: flex; min-width: 0; overflow-x: auto; }
+.view-tab { position: relative; min-width: 104px; padding: 13px 18px; border: 0; background: transparent; color: #5d5d5d; cursor: pointer; white-space: nowrap; }
+.view-tab:hover { background: #f6f6f6; color: #222; }
+.view-tab:focus-visible { outline: 2px solid rgba(204, 0, 0, .45); outline-offset: -3px; }
+.view-tab.is-active { color: var(--ti-red); font-weight: 700; }
+.view-tab.is-active::after { content: ""; position: absolute; left: 16px; right: 16px; bottom: -1px; height: 3px; background: var(--ti-red); }
+.download-svg { flex: 0 0 auto; color: var(--ti-teal); font-size: 12px; font-weight: 700; text-decoration: none; }
+.download-svg:hover { text-decoration: underline; }
 .diagram-viewport { width: 100%; overflow: auto; background: #fff; }
 .diagram-stage { min-width: 100%; transition: width .18s ease; }
 .system-diagram { display: block; width: 100%; height: auto; background: #fff; }
@@ -146,9 +157,13 @@ footer { padding: 19px 2px 34px; display: flex; justify-content: space-between; 
   .application-switcher { flex-direction: column; }
   .switcher-label { padding: 12px 16px 7px; border-right: 0; }
   .switcher-buttons { padding: 0 6px; }
+  .switcher-group-label { min-width: 64px; padding: 0 8px; }
   .application-button { min-width: 115px; padding: 13px 12px; }
   .diagram-panel { padding: 0 8px 54px; }
   .diagram-instruction { padding-left: 8px; font-size: 11px; }
+  .view-toolbar { padding: 0 8px; }
+  .view-tab { min-width: 92px; padding-left: 12px; padding-right: 12px; }
+  .download-svg { display: none; }
   .module-summary { padding-left: 20px; padding-right: 20px; }
   .detail-tabs button { min-width: 0; flex: 1; }
   footer { flex-direction: column; gap: 7px; }

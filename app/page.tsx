@@ -23,14 +23,25 @@ type Hotspot = {
   products?: Product[];
 };
 
+type DiagramView = {
+  id: string;
+  label: string;
+  description: string;
+  src: string;
+  viewBox?: string;
+  hotspots?: Hotspot[];
+};
+
 type Diagram = {
   id: string;
   name: string;
   shortName: string;
   subtitle: string;
+  family?: "应用系统" | "服务器电源";
   src: string;
   viewBox: string;
   hotspots: Hotspot[];
+  views?: DiagramView[];
 };
 
 const southchipProduct = (model: string, description: string, isSeries = false): Product => ({
@@ -150,11 +161,150 @@ const diagrams: Diagram[] = [
       { id: "integrated-interface", label: "三合一隔离接口", category: "隔离通信", description: "集成 CAN / 485 接口与隔离电源。", x: 948, y: 291, width: 128, height: 50, borderPadding: 2 },
     ],
   },
+  {
+    id: "embodied-robot",
+    name: "具身机器人",
+    shortName: "具身机器人",
+    subtitle: "电源轨、BMS、感知控制与关节驱动系统",
+    src: "diagrams/embodied-robot-system.svg",
+    viewBox: "0 0 960.009449 540",
+    hotspots: [],
+    views: [
+      { id: "system-overview", label: "系统总览", description: "展示具身机器人的控制、感知、通信及关节驱动系统。", src: "diagrams/embodied-robot-system.svg" },
+      { id: "power-rail", label: "电源轨架构", description: "展示适配器、电池、BMS 与各级电源轨的供电关系。", src: "diagrams/embodied-robot-power-rail.svg" },
+    ],
+  },
+  {
+    id: "pv-inverter-solution",
+    name: "光伏逆变器方案",
+    shortName: "光伏逆变器 2",
+    subtitle: "光伏输入、功率变换、采样保护与并网接口",
+    src: "diagrams/pv-inverter-solution.svg",
+    viewBox: "0 0 960.009449 540",
+    hotspots: [],
+  },
+  {
+    id: "storage-inverter-solution",
+    name: "储能逆变器方案",
+    shortName: "储能逆变器",
+    subtitle: "电池侧变换、逆变功率级与系统控制",
+    src: "diagrams/energy-storage-inverter-solution.svg",
+    viewBox: "0 0 960.009449 540",
+    hotspots: [],
+  },
+  {
+    id: "portable-energy-storage",
+    name: "移动储能",
+    shortName: "移动储能",
+    subtitle: "双向 DCDC、电池接口与外部供电链路",
+    src: "diagrams/portable-energy-storage-dcdc.svg",
+    viewBox: "0 0 960.009449 540",
+    hotspots: [],
+  },
+  {
+    id: "industrial-inverter-solution",
+    name: "工业变频器方案",
+    shortName: "工业变频器 2",
+    subtitle: "整流、母线、逆变驱动及控制接口",
+    src: "diagrams/industrial-inverter-solution.svg",
+    viewBox: "0 0 960.009449 540",
+    hotspots: [],
+  },
+  {
+    id: "power-bank-bms",
+    name: "多串充电宝 BMS",
+    shortName: "充电宝 BMS",
+    subtitle: "2S–4S 电量计、充电管理与电池保护",
+    src: "diagrams/power-bank-charger-bms.svg",
+    viewBox: "0 0 960.009449 540",
+    hotspots: [],
+  },
+  {
+    id: "server-single-phase-psu",
+    name: "服务器单相 PSU",
+    shortName: "单相 PSU",
+    subtitle: "主功率电路与辅助电源的完整服务器供电方案",
+    family: "服务器电源",
+    src: "diagrams/server-single-phase-main.svg",
+    viewBox: "0 0 960.009449 540",
+    hotspots: [],
+    views: [
+      { id: "main-circuit", label: "主电路", description: "单相服务器 PSU 主功率变换与输出链路。", src: "diagrams/server-single-phase-main.svg" },
+      { id: "aux-power", label: "辅助电源", description: "单相服务器 PSU 控制与驱动辅助供电。", src: "diagrams/server-single-phase-aux.svg" },
+    ],
+  },
+  {
+    id: "server-three-phase-psu",
+    name: "服务器三相 PSU",
+    shortName: "三相 PSU",
+    subtitle: "三相输入主功率电路与辅助供电架构",
+    family: "服务器电源",
+    src: "diagrams/server-three-phase-main.svg",
+    viewBox: "0 0 960.009449 540",
+    hotspots: [],
+    views: [
+      { id: "main-circuit", label: "主电路", description: "三相服务器 PSU 主功率变换与输出链路。", src: "diagrams/server-three-phase-main.svg" },
+      { id: "aux-power", label: "辅助电源", description: "三相服务器 PSU 控制、采样与驱动辅助供电。", src: "diagrams/server-three-phase-aux.svg" },
+    ],
+  },
+  {
+    id: "server-hvdc-sic-psu",
+    name: "服务器 HVDC SiC PSU",
+    shortName: "HVDC SiC PSU",
+    subtitle: "800V 至 50V SiC 主功率级及隔离辅助电源",
+    family: "服务器电源",
+    src: "diagrams/server-hvdc-sic-main.svg",
+    viewBox: "0 0 960.009449 540",
+    hotspots: [],
+    views: [
+      { id: "main-circuit", label: "800V–50V 主电路", description: "采用 SiC 器件的 HVDC 服务器 PSU 主功率链路。", src: "diagrams/server-hvdc-sic-main.svg" },
+      { id: "aux-power", label: "辅助电源", description: "HVDC SiC PSU 的控制与隔离辅助供电。", src: "diagrams/server-hvdc-sic-aux.svg" },
+    ],
+  },
+  {
+    id: "server-hv-ibc-gan",
+    name: "服务器高压 IBC GaN",
+    shortName: "高压 IBC GaN",
+    subtitle: "PDB 中 800V 至 50V GaN 中间总线变换",
+    family: "服务器电源",
+    src: "diagrams/server-hv-ibc-gan-main.svg",
+    viewBox: "0 0 960.009449 540",
+    hotspots: [],
+    views: [
+      { id: "main-circuit", label: "IBC 主电路", description: "采用 GaN 器件的高压中间总线变换主电路。", src: "diagrams/server-hv-ibc-gan-main.svg" },
+      { id: "aux-power", label: "辅助电源", description: "高压 IBC 在 PDB 中的控制和驱动辅助供电。", src: "diagrams/server-hv-ibc-gan-aux.svg" },
+    ],
+  },
+  {
+    id: "server-lv-ibc",
+    name: "服务器低压 IBC",
+    shortName: "低压 IBC",
+    subtitle: "48V 至 12V / 6V 的三种中间总线拓扑",
+    family: "服务器电源",
+    src: "diagrams/server-lv-ibc-llc.svg",
+    viewBox: "0 0 960.009449 540",
+    hotspots: [],
+    views: [
+      { id: "llc", label: "LLC 拓扑", description: "48V 至 12V / 6V LLC 谐振变换方案。", src: "diagrams/server-lv-ibc-llc.svg" },
+      { id: "hsc", label: "HSC 拓扑", description: "48V 至 12V / 6V 混合开关电容变换方案。", src: "diagrams/server-lv-ibc-hsc.svg" },
+      { id: "multiphase-buck", label: "多相 Buck", description: "48V 至 12V / 6V 多相同步 Buck 变换方案。", src: "diagrams/server-lv-ibc-multiphase-buck.svg" },
+    ],
+  },
 ];
+
+const getDiagramViews = (diagram: Diagram): DiagramView[] => diagram.views?.length ? diagram.views : [{
+  id: "overview",
+  label: "系统框图",
+  description: diagram.subtitle,
+  src: diagram.src,
+  viewBox: diagram.viewBox,
+  hotspots: diagram.hotspots,
+}];
 
 export default function Home() {
   const [diagramId, setDiagramId] = useState(diagrams[0].id);
   const [selectedId, setSelectedId] = useState(diagrams[0].hotspots[0].id);
+  const [viewId, setViewId] = useState("overview");
   const [zoom, setZoom] = useState(1);
   const [detailTab, setDetailTab] = useState<"products" | "references">("products");
   const [categoryOpen, setCategoryOpen] = useState(true);
@@ -163,13 +313,35 @@ export default function Home() {
     () => diagrams.find((item) => item.id === diagramId) ?? diagrams[0],
     [diagramId],
   );
+  const views = getDiagramViews(diagram);
+  const activeView = views.find((view) => view.id === viewId) ?? views[0];
+  const currentHotspots = activeView.hotspots ?? diagram.hotspots;
   const selected =
-    diagram.hotspots.find((hotspot) => hotspot.id === selectedId) ??
-    diagram.hotspots[0];
+    currentHotspots.find((hotspot) => hotspot.id === selectedId) ??
+    currentHotspots[0] ?? {
+      id: activeView.id,
+      label: activeView.label,
+      category: "图纸视图",
+      description: activeView.description,
+      x: 0,
+      y: 0,
+      width: 0,
+      height: 0,
+    };
 
   function selectDiagram(next: Diagram) {
+    const nextViews = getDiagramViews(next);
     setDiagramId(next.id);
-    setSelectedId(next.hotspots[0].id);
+    setViewId(nextViews[0].id);
+    setSelectedId((nextViews[0].hotspots ?? next.hotspots)[0]?.id ?? nextViews[0].id);
+    setZoom(1);
+    setDetailTab("products");
+    setCategoryOpen(true);
+  }
+
+  function selectView(next: DiagramView) {
+    setViewId(next.id);
+    setSelectedId((next.hotspots ?? diagram.hotspots)[0]?.id ?? next.id);
     setZoom(1);
     setDetailTab("products");
     setCategoryOpen(true);
@@ -193,23 +365,28 @@ export default function Home() {
               <h1>{diagram.name}</h1>
               <p>{diagram.subtitle}</p>
             </div>
-            <span className="diagram-count">6 个系统方案</span>
+            <span className="diagram-count">{diagrams.length} 个系统方案{views.length > 1 ? ` · ${views.length} 张子图` : ""}</span>
           </div>
         </section>
 
         <nav className="application-switcher" aria-label="选择系统框图">
           <span className="switcher-label">选择应用</span>
           <div className="switcher-buttons">
-            {diagrams.map((item) => (
-              <button
-                type="button"
-                key={item.id}
-                className={item.id === diagram.id ? "application-button is-active" : "application-button"}
-                onClick={() => selectDiagram(item)}
-                aria-current={item.id === diagram.id ? "page" : undefined}
-              >
-                {item.shortName}
-              </button>
+            {(["应用系统", "服务器电源"] as const).map((family) => (
+              <div className="switcher-group" key={family}>
+                <span className="switcher-group-label">{family}</span>
+                {diagrams.filter((item) => (item.family ?? "应用系统") === family).map((item) => (
+                  <button
+                    type="button"
+                    key={item.id}
+                    className={item.id === diagram.id ? "application-button is-active" : "application-button"}
+                    onClick={() => selectDiagram(item)}
+                    aria-current={item.id === diagram.id ? "page" : undefined}
+                  >
+                    {item.shortName}
+                  </button>
+                ))}
+              </div>
             ))}
           </div>
         </nav>
@@ -218,14 +395,32 @@ export default function Home() {
           <div className="diagram-panel">
             <div className="diagram-instruction">
               <span className="instruction-mark" aria-hidden="true" />
-              红色模块可点击并查看产品资源；灰色模块用于说明系统结构
+              {currentHotspots.length ? "红色模块可点击并查看产品资源；灰色模块用于说明系统结构" : "使用下方视图标签切换同一系统的总览、辅助电源或不同拓扑"}
+            </div>
+
+            <div className="view-toolbar">
+              <div className="view-tabs" role="tablist" aria-label="选择子图">
+                {views.map((view) => (
+                  <button
+                    type="button"
+                    role="tab"
+                    aria-selected={view.id === activeView.id}
+                    className={view.id === activeView.id ? "view-tab is-active" : "view-tab"}
+                    key={view.id}
+                    onClick={() => selectView(view)}
+                  >
+                    {view.label}
+                  </button>
+                ))}
+              </div>
+              <a className="download-svg" href={activeView.src} download>下载当前 SVG</a>
             </div>
 
             <div className="diagram-viewport">
               <div className="diagram-stage" style={{ width: `${zoom * 100}%` }}>
-                <svg className="system-diagram" viewBox={diagram.viewBox} role="img" aria-label={`${diagram.name}交互框图`}>
-                  <image href={diagram.src} x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" />
-                  {diagram.hotspots.map((hotspot) => {
+                <svg className="system-diagram" viewBox={activeView.viewBox ?? diagram.viewBox} role="img" aria-label={`${diagram.name}－${activeView.label}`}>
+                  <image href={activeView.src} x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" />
+                  {currentHotspots.map((hotspot) => {
                     const active = hotspot.id === selected.id;
                     const borderPadding = hotspot.borderPadding ?? 3;
                     return (

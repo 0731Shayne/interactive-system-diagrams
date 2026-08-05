@@ -27,7 +27,7 @@ test("server-renders the interactive diagram application", async () => {
   assert.doesNotMatch(html, /Your site is taking shape/);
 });
 
-test("ships all six source diagrams", async () => {
+test("ships existing and newly grouped source diagrams", async () => {
   const diagrams = [
     "home-air-conditioner.svg",
     "central-air-conditioner.svg",
@@ -35,6 +35,24 @@ test("ships all six source diagrams", async () => {
     "industrial-control.svg",
     "energy-storage-pcs.svg",
     "lv-bms.svg",
+    "embodied-robot-power-rail.svg",
+    "embodied-robot-system.svg",
+    "pv-inverter-solution.svg",
+    "energy-storage-inverter-solution.svg",
+    "portable-energy-storage-dcdc.svg",
+    "industrial-inverter-solution.svg",
+    "power-bank-charger-bms.svg",
+    "server-single-phase-main.svg",
+    "server-single-phase-aux.svg",
+    "server-three-phase-main.svg",
+    "server-three-phase-aux.svg",
+    "server-hvdc-sic-main.svg",
+    "server-hvdc-sic-aux.svg",
+    "server-hv-ibc-gan-main.svg",
+    "server-hv-ibc-gan-aux.svg",
+    "server-lv-ibc-llc.svg",
+    "server-lv-ibc-hsc.svg",
+    "server-lv-ibc-multiphase-buck.svg",
   ];
 
   await Promise.all(
@@ -47,4 +65,10 @@ test("ships all six source diagrams", async () => {
   assert.match(page, /SC371P042F/);
   assert.match(page, /SC3771/);
   assert.match(page, /SC81460/);
+  assert.match(page, /具身机器人/);
+  assert.match(page, /服务器电源/);
+  assert.match(page, /系统总览/);
+  assert.match(page, /辅助电源/);
+  assert.match(page, /多相 Buck/);
+  assert.match(page, /selectView/);
 });
