@@ -24,21 +24,21 @@
   <path d="M398 111V454" class="wire"/>
   <path d="M398 111H421M398 160H421M398 209H421M398 258H421M398 307H421M398 356H421M398 405H421M398 454H421" class="wire"/>
   <rect x="421" y="89" width="148" height="42" class="module coral"/>
-  <text x="495" y="108" class="block">NAND VDD</text><text x="495" y="123" class="block strong">SC812A2</text>
+  <text x="495" y="114" class="block strong">NAND VDD</text>
   <rect x="421" y="138" width="148" height="42" class="module green"/>
-  <text x="495" y="157" class="block">NAND VPP</text><text x="495" y="172" class="block strong">SC8723</text>
+  <text x="495" y="163" class="block strong">NAND VPP</text>
   <rect x="421" y="187" width="148" height="42" class="module green"/>
-  <text x="495" y="206" class="block">NAND VCCQ</text><text x="495" y="221" class="block strong">SC81360</text>
+  <text x="495" y="212" class="block strong">NAND VCCQ</text>
   <rect x="421" y="236" width="148" height="42" class="module coral"/>
-  <text x="495" y="255" class="block">Core power</text><text x="495" y="270" class="block strong">SC812B0</text>
+  <text x="495" y="261" class="block strong">Core power</text>
   <rect x="421" y="285" width="148" height="42" class="module green"/>
-  <text x="495" y="304" class="block">PCIe VDDH</text><text x="495" y="319" class="block strong">SC81220</text>
+  <text x="495" y="310" class="block strong">PCIe VDDH</text>
   <rect x="421" y="334" width="148" height="42" class="module green"/>
-  <text x="495" y="353" class="block">PCIe VDDA</text><text x="495" y="368" class="block strong">SC81220</text>
+  <text x="495" y="359" class="block strong">PCIe VDDA</text>
   <rect x="421" y="383" width="148" height="42" class="module green"/>
-  <text x="495" y="402" class="block">DDR VDD / VDDQ</text><text x="495" y="417" class="block strong">SC81260</text>
+  <text x="495" y="408" class="block strong">DDR VDD / VDDQ</text>
   <rect x="421" y="432" width="148" height="42" class="module green"/>
-  <text x="495" y="451" class="block">DDR VPP</text><text x="495" y="466" class="block strong">SC81220</text>
+  <text x="495" y="457" class="block strong">DDR VPP</text>
 
   <path d="M569 110H721M569 159H721M569 208H721M569 257H721M569 306H721M569 355H721M569 404H721M569 453H721" class="wire" marker-end="url(#arrow)"/>
   <text x="584" y="102" class="note">2.5V, 6–8A</text><text x="584" y="151" class="note">12V, 0.5–1A</text><text x="584" y="200" class="note">1.2V, 3A</text>
@@ -48,10 +48,10 @@
   <rect x="721" y="237" width="82" height="139" class="module gray"/><text x="762" y="296" class="block strong">eSSD</text><text x="762" y="312" class="block strong">controller</text><text x="762" y="328" class="block strong">+ PCIe PHY</text>
   <rect x="721" y="384" width="82" height="90" class="module gray"/><text x="762" y="433" class="block strong">DDR</text>
 
-  <rect x="87" y="276" width="104" height="42" class="module green"/><text x="139" y="295" class="block">Charger</text><text x="139" y="310" class="block strong">SC8984</text>
+  <rect x="87" y="276" width="104" height="42" class="module green"/><text x="139" y="301" class="block strong">Charger</text>
   <rect x="87" y="337" width="104" height="38" class="module gray"/><text x="139" y="360" class="block strong">Super Cap</text>
   <path d="M139 318V337" class="wire soft"/><text x="91" y="392" class="label strong">For RAID UPS</text>
-  <rect x="54" y="432" width="139" height="42" class="module green"/><text x="124" y="451" class="block">Charge pump converter</text><text x="124" y="466" class="block strong">SC8508 / SC8525</text>
+  <rect x="54" y="432" width="139" height="42" class="module green"/><text x="124" y="457" class="block strong">Charge pump converter</text>
   <rect x="220" y="432" width="104" height="42" class="module amber"/><text x="272" y="457" class="block strong">PMIC / DCDC</text>
   <text x="54" y="497" class="label strong">Two-stage power architecture</text>
 </svg>

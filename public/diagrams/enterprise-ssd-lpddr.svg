@@ -13,12 +13,12 @@
   <text x="117" y="208" class="label">12V</text>
   <path d="M150 216H399" class="wire" marker-end="url(#arrow)"/>
   <rect x="399" y="181" width="165" height="70" class="module green"/>
-  <text x="482" y="209" class="block">LPDDR PMIC</text><text x="482" y="232" class="block strong" style="font-size:10px">SC6301 / SC6302 / SC6303</text>
+  <text x="482" y="221" class="block strong">LPDDR PMIC</text>
   <path d="M564 216H710" class="wire" marker-end="url(#arrow)"/>
   <text x="592" y="204" class="label">1.1–1.2V, 5–6A</text>
   <rect x="710" y="181" width="118" height="70" class="module gray"/><text x="769" y="222" class="block strong">LPDDR</text>
   <rect x="120" y="330" width="190" height="62" class="module green"/>
-  <text x="215" y="356" class="block">Charge pump converter</text><text x="215" y="379" class="block strong">SC8508 / SC8525</text>
+  <text x="215" y="366" class="block strong">Charge pump converter</text>
   <path d="M310 361H381" class="wire" marker-end="url(#arrow)"/>
   <rect x="381" y="330" width="154" height="62" class="module amber"/><text x="458" y="367" class="block strong">PMIC / DCDC</text>
   <path d="M535 361H622" class="wire" marker-end="url(#arrow)"/>

@@ -64,6 +64,17 @@ test("ships existing and newly grouped source diagrams", async () => {
     diagrams.map((name) => access(new URL(`../public/diagrams/${name}`, import.meta.url))),
   );
 
+  const essdDiagramMarkup = await Promise.all([
+    readFile(new URL("../public/diagrams/enterprise-ssd-power-rail.svg", import.meta.url), "utf8"),
+    readFile(new URL("../public/diagrams/enterprise-ssd-lpddr.svg", import.meta.url), "utf8"),
+  ]);
+  for (const model of ["SC812A2", "SC8723", "SC81360", "SC812B0", "SC81220", "SC81260", "SC8984", "SC8508", "SC8525", "SC6301", "SC6302", "SC6303"]) {
+    assert.ok(
+      essdDiagramMarkup.every((svg) => !svg.includes(model)),
+      `E-SSD SVG should not display product model ${model}`,
+    );
+  }
+
   const page = await readFile(new URL("../app/page.tsx", import.meta.url), "utf8");
   assert.match(page, /data-testid={`hotspot-/);
   assert.match(page, /产品数据待接入/);
