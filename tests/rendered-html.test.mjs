@@ -56,6 +56,8 @@ test("ships existing and newly grouped source diagrams", async () => {
     "obc-dcdc-main.svg",
     "obc-dcdc-aux.svg",
     "traction-inverter.svg",
+    "enterprise-ssd-power-rail.svg",
+    "enterprise-ssd-lpddr.svg",
   ];
 
   await Promise.all(
@@ -75,6 +77,9 @@ test("ships existing and newly grouped source diagrams", async () => {
   assert.match(page, /多相 Buck/);
   assert.match(page, /OBC & DC\/DC/);
   assert.match(page, /Traction Inverter/);
+  assert.match(page, /企业级 E-SSD/);
+  assert.match(page, /SC812A2/);
+  assert.match(page, /SC6303/);
   assert.match(page, /selectView/);
 
   const importedHotspots = JSON.parse(
