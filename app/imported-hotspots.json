@@ -2963,37 +2963,119 @@
   ],
   "server-lv-ibc-multiphase-buck": [
     {
+      "id": "server-lv-ibc-multiphase-buck-0",
+      "label": "Buck Converter",
+      "category": "电源管理",
+      "description": "48V 至 12V / 6V 多相 Buck 变换模块；已接入 PPT 第 17 页所示的开发中产品方案。",
+      "x": 406.8,
+      "y": 152.4,
+      "width": 121.2,
+      "height": 242.4,
+      "borderPadding": 1,
+      "products": [
+        {
+          "company": "南芯科技",
+          "model": "SCPxxxx",
+          "description": "Buck Converter 开发中方案，计划于 Y26.12 提供样品；具体型号尚待确定。",
+          "isSeries": true,
+          "source": "框图.pptx（第17页）"
+        }
+      ]
+    },
+    {
       "id": "server-lv-ibc-multiphase-buck-1",
       "label": "Hotswap Controller",
       "category": "电源管理",
-      "description": "Hotswap Controller 功能模块；当前产品数据待接入。",
+      "description": "热插拔控制器模块；已接入规划中的南芯方案及 PPT 标注的 P2P 竞对参考。",
       "x": 321.0,
       "y": 186.0,
       "width": 59.4,
       "height": 31.8,
-      "borderPadding": 1
+      "borderPadding": 1,
+      "products": [
+        {
+          "company": "南芯科技",
+          "model": "SCxxxx",
+          "description": "规划中的热插拔控制器系列，具体型号尚待确定。",
+          "isSeries": true,
+          "source": "框图.pptx（第17页）"
+        },
+        {
+          "company": "Texas Instruments",
+          "model": "LM5066H",
+          "description": "PPT 标注的热插拔控制器 P2P 竞对参考产品。",
+          "isSeries": false,
+          "isCompetitor": true,
+          "source": "框图.pptx（第17页）"
+        }
+      ]
+    },
+    {
+      "id": "server-lv-ibc-multiphase-buck-4",
+      "label": "GaN IPS",
+      "category": "功率与负载驱动",
+      "description": "GaN 智能功率级模块；已接入 PPT 第 17 页所示产品。",
+      "x": 415.8,
+      "y": 174.0,
+      "width": 96.6,
+      "height": 134.4,
+      "borderPadding": 1,
+      "products": [
+        {
+          "company": "南芯科技",
+          "model": "SD66060",
+          "description": "GaN IPS 方案，PPT 标注计划于 Y26.10 提供样品。",
+          "isSeries": false,
+          "source": "框图.pptx（第17页）"
+        }
+      ]
     },
     {
       "id": "server-lv-ibc-multiphase-buck-2",
       "label": "Half bridge / Driver",
       "category": "功率与负载驱动",
-      "description": "Half bridge / Driver 功能模块；当前产品数据待接入。",
+      "description": "半桥驱动模块；已接入 MOS 与 GaN 两种方案。",
       "x": 426.0,
       "y": 217.8,
       "width": 59.4,
       "height": 67.8,
-      "borderPadding": 1
+      "borderPadding": 1,
+      "products": [
+        {
+          "company": "南芯科技",
+          "model": "SC37631",
+          "description": "MOS 半桥驱动方案，PPT 标注 Y26.08 KO、Y27.Q1 Sample。",
+          "isSeries": false,
+          "source": "框图.pptx（第17页）"
+        },
+        {
+          "company": "南芯科技",
+          "model": "SC37632",
+          "description": "GaN 半桥驱动方案，PPT 标注 Y26.08 KO、Y27.Q1 Sample。",
+          "isSeries": false,
+          "source": "框图.pptx（第17页）"
+        }
+      ]
     },
     {
       "id": "server-lv-ibc-multiphase-buck-3",
       "label": "Buck Controller",
       "category": "电源管理",
-      "description": "Buck Controller 功能模块；当前产品数据待接入。",
+      "description": "多相 Buck 控制器模块；已接入 PPT 第 17 页所示产品。",
       "x": 427.8,
       "y": 352.8,
       "width": 81.0,
       "height": 31.8,
-      "borderPadding": 1
+      "borderPadding": 1,
+      "products": [
+        {
+          "company": "南芯科技",
+          "model": "SCP22442",
+          "description": "双路四相控制器，PPT 标注 Sample Now。",
+          "isSeries": false,
+          "source": "框图.pptx（第17页）"
+        }
+      ]
     }
   ]
 }

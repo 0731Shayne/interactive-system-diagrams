@@ -95,4 +95,15 @@ test("ships existing and newly grouped source diagrams", async () => {
   assert.ok(importedHotspots["power-bank-charger-bms"].some(
     (hotspot) => hotspot.products?.some((product) => product.model === "SC8815A"),
   ));
+  const multiphaseBuckProducts = importedHotspots["server-lv-ibc-multiphase-buck"]
+    .flatMap((hotspot) => hotspot.products ?? []);
+  for (const model of ["SC37631", "SC37632", "SD66060", "SCP22442", "LM5066H"]) {
+    assert.ok(
+      multiphaseBuckProducts.some((product) => product.model === model),
+      `missing slide 17 product ${model}`,
+    );
+  }
+  assert.ok(
+    multiphaseBuckProducts.some((product) => product.model === "LM5066H" && product.isCompetitor),
+  );
 });
