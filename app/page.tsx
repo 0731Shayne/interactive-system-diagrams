@@ -8,6 +8,7 @@ type Product = {
   model: string;
   description: string;
   isSeries?: boolean;
+  isCompetitor?: boolean;
   source?: string;
 };
 
@@ -53,6 +54,15 @@ const southchipProduct = (model: string, description: string, isSeries = false):
   isSeries,
 });
 
+const competitorProduct = (model: string, description: string, isSeries = false): Product => ({
+  company: "竞对产品（P2P）",
+  model,
+  description,
+  isSeries,
+  isCompetitor: true,
+  source: "框图.pptx 产品组合汇总页",
+});
+
 const hotspotsFor = (key: keyof typeof importedHotspots): Hotspot[] => importedHotspots[key] as Hotspot[];
 
 const diagrams: Diagram[] = [
@@ -95,12 +105,12 @@ const diagrams: Diagram[] = [
     hotspots: [
       { id: "dcdc-buck", label: "DCDC Buck", category: "辅助电源", description: "为控制、驱动与信号链生成低压电源。", x: 329, y: 101, width: 120, height: 45, areas: [{ x: 329, y: 101, width: 120, height: 45 }, { x: 746, y: 91, width: 114, height: 38 }] },
       { id: "ldo", label: "LDO", category: "线性稳压", description: "为 DSP 等低压控制器件提供稳定电源。", x: 920, y: 98, width: 98, height: 27 },
-      { id: "iso-driver", label: "隔离栅极驱动", category: "功率驱动", description: "为输入升压级和逆变级提供隔离栅极驱动。", x: 333, y: 392, width: 99, height: 34, areas: [{ x: 333, y: 392, width: 99, height: 34 }, { x: 627, y: 380, width: 113, height: 31 }] },
-      { id: "iso-amps", label: "隔离放大器", category: "隔离采样", description: "用于直流侧与交流侧电压、电流的隔离采样。", x: 338, y: 437, width: 90, height: 31, areas: [{ x: 338, y: 437, width: 90, height: 31 }, { x: 627, y: 463, width: 113, height: 23 }] },
-      { id: "hall-sensor", label: "霍尔传感器", category: "电流采样", description: "对输入侧和输出侧电流进行隔离检测。", x: 333, y: 481, width: 91, height: 40, areas: [{ x: 333, y: 481, width: 91, height: 40 }, { x: 627, y: 425, width: 113, height: 31 }] },
+      { id: "iso-driver", label: "隔离栅极驱动", category: "功率驱动", description: "为输入升压级和逆变级提供隔离栅极驱动。", x: 333, y: 392, width: 99, height: 34, areas: [{ x: 333, y: 392, width: 99, height: 34 }, { x: 627, y: 380, width: 113, height: 31 }], products: [competitorProduct("NSI6602x", "双通道半桥隔离栅极驱动参考型号。", true), competitorProduct("NSI6801x", "单通道电流输入隔离栅极驱动参考型号。", true), competitorProduct("NSI6601M", "带 Miller Clamp 的单通道隔离栅极驱动参考型号。"), competitorProduct("NCP51752", "负压偏置单通道隔离栅极驱动参考型号。"), competitorProduct("1ED3241", "带 SRC 功能的单通道隔离栅极驱动参考型号。") ] },
+      { id: "iso-amps", label: "隔离放大器", category: "隔离采样", description: "用于直流侧与交流侧电压、电流的隔离采样。", x: 338, y: 437, width: 90, height: 31, areas: [{ x: 338, y: 437, width: 90, height: 31 }, { x: 627, y: 463, width: 113, height: 23 }], products: [competitorProduct("AMC1311 / AMC1312", "隔离电压放大器参考型号。", true), competitorProduct("AMC33xx", "集成 DCDC 的隔离电压放大器参考系列。", true), competitorProduct("AMC0381", "高压电阻输入隔离电压放大器参考型号。"), competitorProduct("AMC130x", "隔离电流放大器参考系列。", true), competitorProduct("AMC1306", "隔离电流 ADC 参考型号。"), competitorProduct("AMC330x", "集成 DCDC 的隔离电流放大器参考系列。", true) ] },
+      { id: "hall-sensor", label: "霍尔传感器", category: "电流采样", description: "对输入侧和输出侧电流进行隔离检测。", x: 333, y: 481, width: 91, height: 40, areas: [{ x: 333, y: 481, width: 91, height: 40 }, { x: 627, y: 425, width: 113, height: 31 }], products: [competitorProduct("NSM201x / ACS7xx", "线性霍尔电流传感器参考系列。", true)] },
       { id: "pwm-control", label: "PWM Controller + MOS", category: "电源控制", description: "生成辅助电源及功率级控制信号。", x: 616, y: 176, width: 159, height: 31 },
       { id: "can", label: "CAN 收发器", category: "有线通信", description: "提供控制器局域网连接。", x: 653, y: 623, width: 90, height: 30 },
-      { id: "communication-isolation", label: "通信隔离", category: "数字隔离", description: "为 RS-485 与 CAN 等外部通信链路提供隔离。", x: 1020, y: 528, width: 107, height: 40, areas: [{ x: 1020, y: 528, width: 107, height: 40 }, { x: 908, y: 622, width: 79, height: 39 }] },
+      { id: "communication-isolation", label: "通信隔离", category: "数字隔离", description: "为 RS-485 与 CAN 等外部通信链路提供隔离。", x: 1020, y: 528, width: 107, height: 40, areas: [{ x: 1020, y: 528, width: 107, height: 40 }, { x: 908, y: 622, width: 79, height: 39 }], products: [competitorProduct("NSI82xx / NSI83xx", "1–6 通道数字隔离器参考系列。", true), competitorProduct("NSI8308x / NSI104x", "隔离 RS-485 / CAN 接口参考系列。", true), competitorProduct("IS2092 / IS2062", "三合一隔离 RS-485 / CAN 接口参考系列。", true), competitorProduct("IS3092 / IS3062", "SOW16 三合一隔离 RS-485 / CAN 接口参考系列。", true), competitorProduct("NSIP884x", "二合一四通道数字隔离器参考系列。", true) ] },
     ],
   },
   {
@@ -111,14 +121,15 @@ const diagrams: Diagram[] = [
     src: "diagrams/industrial-control.svg",
     viewBox: "0 0 1280 720",
     hotspots: [
-      { id: "iso-driver", label: "六通道隔离驱动", category: "功率驱动", description: "为三相逆变桥提供六路隔离栅极驱动。", x: 823.5, y: 221.5, width: 134, height: 44 },
-      { id: "current-amps", label: "隔离电流放大", category: "信号采集", description: "采集功率级电流并反馈到控制器。", x: 798.5, y: 310.5, width: 168, height: 21 },
-      { id: "bus-isolator", label: "工业总线隔离", category: "隔离通信", description: "为 RS-485、CAN 等工业总线提供数字隔离。", x: 406.5, y: 450.5, width: 131, height: 26, areas: [{ x: 406.5, y: 450.5, width: 131, height: 26 }, { x: 406.5, y: 487.5, width: 131, height: 26 }] },
+      { id: "iso-driver", label: "六通道隔离驱动", category: "功率驱动", description: "为三相逆变桥提供六路隔离栅极驱动。", x: 823.5, y: 221.5, width: 134, height: 44, products: [competitorProduct("NSI6602x", "双通道半桥隔离栅极驱动参考系列。", true), competitorProduct("NSI6601x", "单通道电流输入隔离栅极驱动参考系列。", true), competitorProduct("NSI6601M", "带 Miller Clamp 的单通道隔离栅极驱动参考型号。"), competitorProduct("NCP51752", "负压偏置单通道隔离栅极驱动参考型号。") ] },
+      { id: "current-amps", label: "隔离电流放大", category: "信号采集", description: "采集功率级电流并反馈到控制器。", x: 798.5, y: 310.5, width: 168, height: 21, products: [competitorProduct("AMC1306", "隔离电流 ADC 参考型号。"), competitorProduct("AMC330x", "集成 DCDC 的隔离电流放大器参考系列。", true)] },
+      { id: "bus-isolator", label: "工业总线隔离", category: "隔离通信", description: "为 RS-485、CAN 等工业总线提供数字隔离。", x: 406.5, y: 450.5, width: 131, height: 26, areas: [{ x: 406.5, y: 450.5, width: 131, height: 26 }, { x: 406.5, y: 487.5, width: 131, height: 26 }], products: [competitorProduct("IS3092 / IS3062", "SOW16 三合一隔离 RS-485 / CAN 接口参考系列。", true), competitorProduct("NSIP884x", "二合一四通道隔离器参考系列。", true)] },
       { id: "voltage-amps", label: "隔离电压放大", category: "信号采集", description: "用于母线和功率级的隔离电压测量。", x: 778.5, y: 458.5, width: 168, height: 22 },
       { id: "power-controller", label: "DCDC / PWM 控制器", category: "电源管理", description: "生成系统辅助电源和模拟电源轨。", x: 406.5, y: 574.5, width: 131, height: 26 },
       { id: "low-voltage-power", label: "LDO 与隔离 DCDC", category: "电源管理", description: "为 MCU 和隔离接口提供低压电源。", x: 224.5, y: 564.5, width: 83, height: 16, areas: [{ x: 224.5, y: 564.5, width: 83, height: 16 }, { x: 224.5, y: 587.5, width: 83, height: 16 }, { x: 224.5, y: 609.5, width: 83, height: 16 }] },
       { id: "driver-board-power", label: "驱动板辅助电源", category: "辅助电源", description: "为驱动板各隔离域提供多路辅助电源。", x: 678.5, y: 578.5, width: 43, height: 25, areas: [{ x: 678.5, y: 578.5, width: 43, height: 25 }, { x: 843.5, y: 575.5, width: 46, height: 25 }] },
       { id: "flyback", label: "Flyback", category: "辅助电源", description: "从交流或直流输入生成隔离辅助电源。", x: 1008.5, y: 575.5, width: 81, height: 25 },
+      { id: "angle-encoder", label: "磁编码器", category: "磁传感", description: "用于电机轴角度与位置反馈。", x: 955, y: 405, width: 86, height: 31, products: [competitorProduct("MT6835 / TAD2143", "21 位 AMR 磁编码器参考型号。", true), competitorProduct("MT6701 / MA730", "TMR 磁编码器参考型号。", true), competitorProduct("MA600A", "感应式编码器参考型号。"), competitorProduct("MT6826S", "17 位 AMR 磁编码器参考型号。") ] },
     ],
   },
   {
@@ -156,13 +167,13 @@ const diagrams: Diagram[] = [
     hotspots: [
       { id: "afe", label: "AFE", category: "电池前端", description: "采集两组电芯电压并执行均衡与诊断。", x: 288.106, y: 201.083, width: 81.47, height: 159.59, areas: [{ x: 288.106, y: 201.083, width: 81.47, height: 159.59 }, { x: 289.786, y: 370.918, width: 81.47, height: 159.42 }] },
       { id: "i2c-isolator", label: "I²C 隔离器", category: "数字隔离", description: "隔离 AFE 与主控制器之间的 I²C 通信。", x: 413.922, y: 259.883, width: 92.72, height: 28.22 },
-      { id: "buck", label: "高压 Buck", category: "电源管理", description: "从电池组高压侧生成低压系统电源。", x: 631.959, y: 195.37, width: 177.72, height: 35.45 },
+      { id: "buck", label: "高压 Buck", category: "电源管理", description: "从电池组高压侧生成低压系统电源。", x: 631.959, y: 195.37, width: 177.72, height: 35.45, products: [competitorProduct("LM51xx", "100V / 120V 非同步低静态电流 Buck 参考系列。", true), competitorProduct("LM501x", "150V 非同步及 100–150V 同步 Buck 参考系列。", true)] },
       { id: "ldo", label: "LDO", category: "线性稳压", description: "为低压控制和通信器件提供稳定电源。", x: 679.665, y: 262.065, width: 74.08, height: 23.35 },
       { id: "isolated-power", label: "隔离电源", category: "电源管理", description: "为隔离通信域提供独立电源。", x: 661.019, y: 308.93, width: 106.67, height: 36.96 },
       { id: "channel-isolator", label: "多通道隔离器", category: "数字隔离", description: "隔离 MCU 与外部通信控制域。", x: 674.458, y: 395.945, width: 90.54, height: 32.09 },
-      { id: "can-interface", label: "CAN / 485 接口", category: "隔离通信", description: "提供电池管理系统对外通信接口。", x: 796.746, y: 395.945, width: 92.05, height: 32.09 },
-      { id: "mos-driver", label: "低边 MOS 驱动", category: "功率驱动", description: "驱动低边 MOSFET 完成负载或保护控制。", x: 664.883, y: 508.835, width: 130.02, height: 27.55 },
-      { id: "integrated-interface", label: "三合一隔离接口", category: "隔离通信", description: "集成 CAN / 485 接口与隔离电源。", x: 948, y: 291, width: 128, height: 50, borderPadding: 2 },
+      { id: "can-interface", label: "CAN / 485 接口", category: "隔离通信", description: "提供电池管理系统对外通信接口。", x: 796.746, y: 395.945, width: 92.05, height: 32.09, products: [competitorProduct("IS2092 / IS2062", "LGA 三合一隔离 RS-485 / CAN 接口参考系列。", true), competitorProduct("IS3092 / IS3062", "SOW16 三合一隔离 RS-485 / CAN 接口参考系列。", true)] },
+      { id: "mos-driver", label: "低边 MOS 驱动", category: "功率驱动", description: "驱动低边 MOSFET 完成负载或保护控制。", x: 664.883, y: 508.835, width: 130.02, height: 27.55, products: [competitorProduct("UCC27524", "双通道低边栅极驱动参考型号。") ] },
+      { id: "integrated-interface", label: "三合一隔离接口", category: "隔离通信", description: "集成 CAN / 485 接口与隔离电源。", x: 948, y: 291, width: 128, height: 50, borderPadding: 2, products: [competitorProduct("IS2092 / IS2062", "LGA 三合一隔离 RS-485 / CAN 接口参考系列。", true), competitorProduct("IS3092 / IS3062", "SOW16 三合一隔离 RS-485 / CAN 接口参考系列。", true)] },
     ],
   },
   {
@@ -172,10 +183,10 @@ const diagrams: Diagram[] = [
     subtitle: "电源轨、BMS、感知控制与关节驱动系统",
     src: "diagrams/embodied-robot-system.svg",
     viewBox: "0 0 960.009449 540",
-    hotspots: hotspotsFor("embodied-robot-power-rail"),
+    hotspots: hotspotsFor("embodied-robot-system"),
     views: [
-      { id: "system-overview", label: "系统总览", description: "采用 PPT 第 29 页架构，展示适配器、电池、BMS、感知控制、关节驱动与灵巧手的完整电源轨。", src: "diagrams/embodied-robot-system.svg", hotspots: hotspotsFor("embodied-robot-power-rail") },
-      { id: "power-rail", label: "产品方案", description: "展示同一电源轨架构中已匹配的南芯产品料号。", src: "diagrams/embodied-robot-power-rail.svg", hotspots: hotspotsFor("embodied-robot-power-rail") },
+      { id: "system-overview", label: "系统总览", description: "展示具身机器人的控制、感知、通信及关节驱动系统。", src: "diagrams/embodied-robot-system.svg", hotspots: hotspotsFor("embodied-robot-system") },
+      { id: "power-rail", label: "产品方案", description: "采用 PPT 第 29 页电源轨架构，展示适配器、电池、BMS、感知控制、关节驱动与灵巧手。", src: "diagrams/embodied-robot-power-rail.svg", hotspots: hotspotsFor("embodied-robot-power-rail") },
     ],
   },
   {
@@ -609,7 +620,7 @@ export default function Home() {
                             <span className="product-company">{product.company}</span>
                             <h3>{product.model}</h3>
                           </div>
-                          <span className="product-match">{product.isSeries ? "产品系列" : "已匹配"}</span>
+                          <span className="product-match">{product.isCompetitor ? "竞对参考" : product.isSeries ? "产品系列" : "已匹配"}</span>
                         </div>
                         <p>{product.description}</p>
                         <div className="product-source">来源：{product.source ?? `${diagram.name} 系统方案图`}</div>
