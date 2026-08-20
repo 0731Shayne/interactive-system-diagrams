@@ -91,6 +91,9 @@ test("ships existing and newly grouped source diagrams", async () => {
   assert.match(page, /企业级 E-SSD/);
   assert.match(page, /SC812A2/);
   assert.match(page, /SC6303/);
+  assert.match(page, /id: "essd-ddr-vddq"/);
+  assert.match(page, /id: "essd-ddr-vpp"/);
+  assert.doesNotMatch(page, /id: "essd-ddr-power"/);
   assert.match(page, /竞对产品（P2P）/);
   assert.match(page, /NSI6602x/);
   assert.match(page, /UCC27524/);
